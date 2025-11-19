@@ -12,7 +12,7 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.LayeredDraw;
 import net.minecraft.client.renderer.GameRenderer;
-import net.minecraft.util.FastColor;
+
 import net.minecraft.util.Mth;
 
 public class LatencyHudOverlay implements LayeredDraw.Layer {
