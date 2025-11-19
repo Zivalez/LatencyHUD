@@ -22,10 +22,12 @@ public class LatencyHudOverlay implements LayeredDraw.Layer {
 
     @Override
     public void render(GuiGraphics guiGraphics, DeltaTracker deltaTracker) {
-        if (!Config.ENABLED.get()) return;
-        
+        if (!Config.ENABLED.get())
+            return;
+
         Minecraft mc = Minecraft.getInstance();
-        if (mc.options.hideGui || mc.getDebugOverlay().showDebugScreen()) return;
+        if (mc.options.hideGui || mc.getDebugOverlay().showDebugScreen())
+            return;
 
         // Update tracker
         float frameTimeMs = mc.getFrameTimeNs() / 1_000_000f;
@@ -65,12 +67,13 @@ public class LatencyHudOverlay implements LayeredDraw.Layer {
     private void renderGraph(GuiGraphics guiGraphics, int x, int y, int width, int height) {
         float maxMs = Math.max(50f, tracker.getMax()); // Minimum 50ms scale
         int samples = tracker.getCount();
-        if (samples < 2) return;
+        if (samples < 2)
+            return;
 
         RenderSystem.enableBlend();
         RenderSystem.defaultBlendFunc();
         RenderSystem.setShader(GameRenderer::getPositionColorShader);
-        
+
         Tesselator tesselator = Tesselator.getInstance();
         // In 1.21, use begin() then end() which draws.
         BufferBuilder buffer = tesselator.begin(VertexFormat.Mode.TRIANGLE_STRIP, DefaultVertexFormat.POSITION_COLOR);
@@ -92,7 +95,7 @@ public class LatencyHudOverlay implements LayeredDraw.Layer {
             int g = (col >> 8) & 0xFF;
             int b = col & 0xFF;
             int a = (col >> 24) & 0xFF;
-            
+
             // Top vertex (colored)
             buffer.addVertex(pose.last().pose(), px, -h, 0).setColor(r, g, b, a);
             // Bottom vertex (transparent/faded)
@@ -104,7 +107,7 @@ public class LatencyHudOverlay implements LayeredDraw.Layer {
             // BufferBuilder.end() returns MeshData, which we then draw via BufferUploader
             // But Tesselator.end() handles this convenience in most versions.
             // If Tesselator.end() is void, it draws.
-            net.minecraft.client.renderer.BufferUploader.drawWithShader(buffer.buildOrThrow());
+            com.mojang.blaze3d.vertex.BufferUploader.drawWithShader(buffer.buildOrThrow());
         } catch (Exception e) {
             // Fallback if API differs slightly, but buildOrThrow is standard in 1.21
         }
