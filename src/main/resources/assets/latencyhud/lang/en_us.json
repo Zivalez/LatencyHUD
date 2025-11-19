@@ -1,0 +1,13 @@
+{
+  "itemGroup.latencyhud": "Example Mod Tab",
+  "block.latencyhud.example_block": "Example Block",
+  "item.latencyhud.example_item": "Example Item",
+
+  "latencyhud.configuration.title": "LatencyHUD Configs",
+  "latencyhud.configuration.section.latencyhud.common.toml": "LatencyHUD Configs",
+  "latencyhud.configuration.section.latencyhud.common.toml.title": "LatencyHUD Configs",
+  "latencyhud.configuration.items": "Item List",
+  "latencyhud.configuration.logDirtBlock": "Log Dirt Block",
+  "latencyhud.configuration.magicNumberIntroduction": "Magic Number Text",
+  "latencyhud.configuration.magicNumber": "Magic Number"
+}
